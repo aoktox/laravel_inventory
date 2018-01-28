@@ -17,7 +17,35 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => bcrypt('rahasia)'),
         'remember_token' => str_random(10),
+        'is_admin'=>false
+    ];
+});
+
+$factory->define(App\Item::class, function (Faker $faker) {
+    return [
+        'name' => 'Item - '.str_random(5),
+        'desc' => $faker->text,
+        'qty' => $faker->numberBetween(0,100),
+        'price' => $faker->numberBetween(500000,1000000),
+        'purchased_at'=> $faker->dateTime,
+        'status' => rand(1,2)
+    ];
+});
+
+$factory->define(App\Transaction::class, function (Faker $faker) {
+    return [
+        'user_id' => \App\User::inRandomOrder()->first()->id,
+        'submitted_at'=>\Carbon\Carbon::now()
+    ];
+});
+
+$factory->define(App\TransactionDetail::class, function (Faker $faker) {
+    return [
+        'transaction_id' => \App\Transaction::inRandomOrder()->first()->id,
+        'item_id' => \App\Item::inRandomOrder()->first()->id,
+        'desc' => $faker->text(10),
+        'qty' => rand(1,5)
     ];
 });
