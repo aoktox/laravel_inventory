@@ -119,7 +119,7 @@
                         if(!msg.error) {
                             alert(msg.message);
                             localStorage.removeItem('item');
-                            location.reload();
+                            window.location = "{{ route('user.riwayat_pinjam') }}";
                         }
                     }
                 });
