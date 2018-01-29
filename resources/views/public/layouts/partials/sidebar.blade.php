@@ -27,7 +27,7 @@
                     <h3>General</h3>
                     <ul class="nav side-menu">
                         <li><a href="{{ route('home') }}"><i class="fa fa-home"></i> Home </a></li>
-                        <li><a href="{{ route('user.pinjam') }}"><i class="fa fa-database"></i> Peminjaman </a></li>
+                        <li><a href="{{ route('user.riwayat_pinjam') }}"><i class="fa fa-database"></i> Daftar Peminjaman </a></li>
                     </ul>
                 </div>
             </div>

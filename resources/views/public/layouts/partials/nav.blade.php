@@ -23,6 +23,12 @@
                         </form>
                     </ul>
                 </li>
+                <li role="presentation" class="dropdown">
+                    <a href="{{route('user.pinjam')}}" class="dropdown-toggle info-number">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="badge bg-green" id="cart_items"></span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
