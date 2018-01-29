@@ -9,6 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -27,33 +28,17 @@ class UserController extends Controller
         return view('public.pinjam');
     }
 
+    public function riwayat_pinjam()
+    {
+        $history = Transaction::with('details')->whereUserId(Auth::user()->id)->get();
+        return view('public.history_pinjam',['transactions'=>$history]);
+    }
+
     public function do_pinjam(Request $request){
-//        dd($request);
         $pinjam =[
-            'user' => 2,
-            'submitted_at' => \Carbon\Carbon::now(),
-            'items'=>[
-                [
-                    'item_id' => 2,
-                    'desc' => 'wkwkwk',
-                    'qty' => 1
-                ],
-                [
-                    'item_id' => 3,
-                    'desc' => 'wkwkwk',
-                    'qty' => 10
-                ],
-                [
-                    'item_id' => 4,
-                    'desc' => 'wkwkwk',
-                    'qty' => 10
-                ],
-                [
-                    'item_id' => 8,
-                    'desc' => 'wkwkwk',
-                    'qty' => 195
-                ]
-            ]
+            'user' => Auth::user()->id,
+            'submitted_at' => Carbon::now(),
+            'items'=> $request->get('param')
         ];
 
         $is_validated = $this->validate_pinjam($pinjam);
@@ -62,6 +47,7 @@ class UserController extends Controller
         }
         $this->simpan($pinjam);
 
+        return $this->send_json(200,false,"Transaksi berhasil");
     }
 
     private function validate_pinjam($param){
@@ -69,7 +55,7 @@ class UserController extends Controller
             return $this->send_json(404, true, 'User not found');
 
         foreach ($param['items'] as $item) {
-            $t_item = Item::find($item['item_id']);
+            $t_item = Item::find($item['id']);
             if ($t_item==null)
                 return $this->send_json(404,true,'Item not found');
             if (!$t_item->is_available($item['qty']))
@@ -87,7 +73,7 @@ class UserController extends Controller
         foreach ($param['items'] as $item) {
             TransactionDetail::create([
                 'transaction_id' => $trx->id,
-                'item_id' => $item['item_id'],
+                'item_id' => $item['id'],
                 'desc' => $item['desc'],
                 'qty' => $item['qty']
             ]);

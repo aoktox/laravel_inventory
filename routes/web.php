@@ -22,6 +22,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('/','UserController@index')->name('dashboard');
     Route::get('/pinjam','UserController@pinjam')->name('pinjam');
+    Route::get('/pinjam','UserController@pinjam')->name('pinjam');
+    Route::get('/riwayat','UserController@riwayat_pinjam')->name('riwayat_pinjam');
     Route::post('/pinjam','UserController@do_pinjam')->name('do_pinjam');
 });
 

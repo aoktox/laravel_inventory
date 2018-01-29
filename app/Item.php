@@ -16,4 +16,11 @@ class Item extends Model
         $total = $this->qty;
         return ($total-$dipinjam-$n)>=0;
     }
+
+    public function get_available(){
+        $dipinjam = DB::table('transaction_details')->whereNull('returned_at')->where('item_id',$this->id)->sum('qty');
+        $total = $this->qty;
+        return ($total-$dipinjam);
+    }
+
 }

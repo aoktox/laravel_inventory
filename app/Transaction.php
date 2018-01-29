@@ -13,4 +13,9 @@ class Transaction extends Model
     protected $fillable = [
         'user_id', 'submitted_at', 'approved_at','reject_at','staff_id'
     ];
+
+    public function details()
+    {
+        return $this->hasMany('App\TransactionDetail');
+    }
 }
