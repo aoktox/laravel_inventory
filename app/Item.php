@@ -22,5 +22,10 @@ class Item extends Model
         $total = $this->qty;
         return ($total-$dipinjam);
     }
+    
+    public function get_borrowed(){
+        $dipinjam = DB::table('transaction_details')->whereNull('returned_at')->where('item_id',$this->id)->sum('qty');
+        return($dipinjam);
+    }
 
 }

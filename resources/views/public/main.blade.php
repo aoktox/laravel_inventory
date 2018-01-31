@@ -3,7 +3,7 @@
 @section('content')
     <div class="container body">
     @include('public.layouts.partials.sidebar')
-    @include('public.layouts.partials.nav')
+        @include('public.layouts.partials.nav')
     <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
