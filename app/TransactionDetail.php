@@ -26,4 +26,9 @@ class TransactionDetail extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function get_staff(){
+        if ($this->staff_id!=null && $staff=User::find($this->staff_id))
+        return $staff->name;
+    }
 }

@@ -59,7 +59,7 @@
                       
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <a href="user.html"><button class="btn btn-primary" type="button">Cancel</button></a>
+                          <a href="{{ URL::previous() }}"><button class="btn btn-primary" type="button">Cancel</button></a>
                           <button type="submit" class="btn btn-success">Save</button>
                         </div>
                       </div>

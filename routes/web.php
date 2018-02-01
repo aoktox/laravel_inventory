@@ -42,6 +42,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/userdetail/{id}', 'AdminController@userdetail')->name('userdetail');
     Route::get('/userdelete/{id}', 'AdminController@userdelete')->name('userdelete');
     Route::post('/useredit/{id}', 'AdminController@useredit');
+    Route::post('/do_receive', 'AdminController@do_receive_item')->name('do_receive');
 });
 
 Route::prefix('user')->name('user.')->group(function () {
