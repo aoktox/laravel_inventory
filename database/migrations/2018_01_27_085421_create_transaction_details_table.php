@@ -17,7 +17,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('transaction_id');
             $table->unsignedInteger('item_id');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->unsignedInteger('qty');
             $table->enum('return_status',['GOOD','BAD'])->default('GOOD');
             $table->timestamp('returned_at')->nullable();

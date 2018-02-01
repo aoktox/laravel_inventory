@@ -18,9 +18,15 @@ class Item extends Model
     }
 
     public function get_available(){
-        $dipinjam = DB::table('transaction_details')->whereNull('returned_at')->where('item_id',$this->id)->sum('qty');
+        $approve_trx = Transaction::whereNotNull('approved_at')->pluck('id')->toArray();
+        $dipinjam = DB::table('transaction_details')->whereIn('transaction_id',$approve_trx)->whereNull('returned_at')->where('item_id',$this->id)->sum('qty');
         $total = $this->qty;
         return ($total-$dipinjam);
+    }
+
+    public function get_borrowed(){
+        $dipinjam = DB::table('transaction_details')->whereNull('returned_at')->where('item_id',$this->id)->sum('qty');
+        return($dipinjam);
     }
 
 }

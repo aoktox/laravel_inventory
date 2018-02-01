@@ -41,10 +41,43 @@
         <div class="x_title">
             <h2 class="pull-left">Peminjaman baru</h2>
             <div class="clearfix"></div>
-
         </div>
         <div class="x_content">
-
+             <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_content">
+                                    <table class="table table-bordered">
+                                        <table class="table table-bordered" id="list-items">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Peminjam</th>
+                                                <th>Waktu Pinjam</th>
+                                                <th>Detail</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($transactions as $users)
+                                            @if($users->approved_at==null)
+                                            <tr>
+                                                <th scope="row">{{ $users->id}}</th>
+                                                <td>{{ $users->users->name }}</td>
+                                                <td>{{ $users->submitted_at}}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.detail')}}"><button type="button" class="btn btn-primary">Detail</button></a>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </div>
     </div>
 </div>
