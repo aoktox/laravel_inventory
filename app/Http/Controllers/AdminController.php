@@ -44,7 +44,9 @@ class AdminController extends Controller
     
     public function historydetail($id){
        $data = Transaction::findOrFail($id); 
-       $model = TransactionDetail::all();
+       $model = TransactionDetail::select('transaction_details.*','users.name as staff')
+                ->join('users','users.id','=','transaction_details.staff_id','left')
+                ->get();
         
        return view('admin.historydetail', compact('model','data'));
     }
@@ -53,7 +55,7 @@ class AdminController extends Controller
        $data = Transaction::findOrFail($id); 
        $model = TransactionDetail::all();
         
-       return view('admin.historydetail', compact('model','data'));
+       return view('admin.historyreject', compact('model','data'));
     }
     
     public function item(){
@@ -142,7 +144,7 @@ class AdminController extends Controller
         $model->staff_id = Auth::user()->id;
         $model->save();
         
-        return redirect('admin/historydetail/'.$id)->with('success', 'Transaksi Ditolak...');
+        return redirect('admin/request')->with('success', 'Transaksi Ditolak...');
     }
     
     public function approve($id){
@@ -151,7 +153,7 @@ class AdminController extends Controller
         $model->staff_id = Auth::user()->id;
         $model->save();
         
-        return redirect('admin/historydetail/'.$id)->with('success', 'Transaksi Diterima...');
+        return redirect('admin/request')->with('success', 'Transaksi Diterima...');
     }
     
     public function requestdetail($id){

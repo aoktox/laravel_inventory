@@ -80,7 +80,7 @@
                           <td>{{$mdl->qty}}</td>
                           <td>{{$mdl->desc}}</td>
                           <td>{{$mdl->returned_at}}</td>
-                          <td></td>
+                          <td>{{$mdl->staff}}</td>
                           <td>{{$mdl->return_status}}</td>
                         </tr>
                         @endif

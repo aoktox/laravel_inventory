@@ -24,6 +24,6 @@ class TransactionDetail extends Model
     
     public function nmadmin()
     {
-        return $this->belongsTo('App\User', 'staff_id');
+        return $this->belongsTo('App\User');
     }
 }

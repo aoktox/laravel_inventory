@@ -29,11 +29,11 @@
                     <div class="form-group">
                       <label class="control-label col-md-2 col-sm-3 col-xs-12">Transaction Id</label>
                       <div class="col-md-4 col-sm-6 col-xs-12">
-                        <label class="control-label col-md-5" id="id-transaction">: {{$data->id}}</label>
+                        <label class="control-label col-md-8" id="id-transaction">: {{$data->id}}</label>
                       </div>
                       <label class="control-label col-md-2 col-sm-3 col-xs-12">User Id</label>
                       <div class="col-md-4 col-sm-6 col-xs-12">
-                        <label class="control-label col-md-5" id="id-user">: {{$data->user_id}} </label>
+                        <label class="control-label col-md-8" id="id-user">: {{$data->user_id}} </label>
                       </div>
                     </div>
 
@@ -42,11 +42,11 @@
                     <div class="form-group">
                       <label class="control-label col-md-2 col-sm-3 col-xs-12">Submitted</label>
                       <div class="col-md-4 col-sm-6 col-xs-12">
-                        <label class="control-label col-md-5" id="submited">: {{$data->submitted_at}}</label>
+                        <label class="control-label col-md-8" id="submited">: {{$data->submitted_at}}</label>
                       </div>
                       <label class="control-label col-md-2 col-sm-3 col-xs-12">User Name</label>
                       <div class="col-md-4 col-sm-6 col-xs-12">
-                        <label class="control-label col-md-5" id="user-name">: {{$data->users->name}}</label>
+                        <label class="control-label col-md-8" id="user-name">: {{$data->users->name}}</label>
                       </div>
                     </div>
 

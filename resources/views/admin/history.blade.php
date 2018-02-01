@@ -33,7 +33,7 @@
                       </thead>
                       <tbody>
                         @foreach($historis as $history)
-                        @if($history->approved_at != NULL || $history->reject_at != NULL)
+                        @if($history->approved_at != NULL)
                         <tr>
                           <td>{{$history->id}}</td>
                           <td>{{$history->users->name}}</td>
@@ -41,17 +41,21 @@
                           <td>{{$history->submitted_at}}</td>
                           <td>{{$history->approved_at}}</td>
                           <td>{{$history->reject_at}}</td>
-                          @if($history->approved_at != NULL && $history->reject_at == NULL)
                           <td>
                             <a href="{{ url('admin/historydetail/'.$history->id) }}"><button class="btn btn-primary btn-xs" type="button">Detail</button></a>
                           </td>
-                          @endif
-                          
-                          @if($history->reject_at != NULL && $history->approved_at == NULL)
+                        </tr>
+                        @elseif($history->reject_at != NULL)
+                        <tr>
+                          <td>{{$history->id}}</td>
+                          <td>{{$history->users->name}}</td>
+                          <td>{{$history->staff}}</td>
+                          <td>{{$history->submitted_at}}</td>
+                          <td>{{$history->approved_at}}</td>
+                          <td>{{$history->reject_at}}</td>
                           <td>
                             <a href="{{ url('admin/historyreject/'.$history->id) }}"><button class="btn btn-primary btn-xs" type="button">Detail</button></a>
                           </td>
-                          @endif
                         </tr>
                         @endif
                         @endforeach
